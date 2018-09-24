@@ -41,8 +41,10 @@ class MessageGroup extends Component {
     const bubbleColor = this.props.fgColor
     const textColor = this.props.textColor
 
+    const responseType = `botpress_messages-container-${ !this.props.isBot ? 'user' : 'bot' }`;
+
     return (
-      <div className={`${className} botpress_messages-container-outer`}>
+      <div className={`${className} botpress_messages-container-outer ${responseType}`}>
         {this.renderAvatar()}
         <div className={style['message-container']}>
           {this.props.showUserName && (

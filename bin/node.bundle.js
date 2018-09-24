@@ -2121,7 +2121,7 @@ module.exports = {
 		"access": "public"
 	},
 	"scripts": {
-		"test": "echo \"Error: no jesse specified\" && exit 1",
+		"test": "echo \"Error: no test specified\" && exit 1",
 		"watch": "node webpack.js --watch",
 		"compile": "node webpack.js --compile"
 	},

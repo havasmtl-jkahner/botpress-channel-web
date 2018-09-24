@@ -80,7 +80,9 @@ const QuickReplies = props => {
     <QuickReply key={`${index}-quick-reply`} {...props} {...qr} />
   ))
 
-  return <div className={style.quickReplyContainer}>{quick_replies}</div>
+  return <div className="${style.quickReplyContainer} botpress_messages-container-quickreplies">
+      {quick_replies}
+    </div>;
 }
 
 export default QuickReplies

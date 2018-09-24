@@ -24279,9 +24279,11 @@ var MessageGroup = function (_Component) {
       var bubbleColor = this.props.fgColor;
       var textColor = this.props.textColor;
 
+      var responseType = 'botpress_messages-container-' + (!this.props.isBot ? 'user' : 'bot');
+
       return _react2.default.createElement(
         'div',
-        { className: className + ' botpress_messages-container-outer' },
+        { className: className + ' botpress_messages-container-outer ' + responseType },
         this.renderAvatar(),
         _react2.default.createElement(
           'div',
@@ -28853,7 +28855,7 @@ var QuickReplies = function QuickReplies(props) {
 
   return _react2.default.createElement(
     'div',
-    { className: _style2.default.quickReplyContainer },
+    { className: '${style.quickReplyContainer} botpress_messages-container-quickreplies' },
     quick_replies
   );
 };

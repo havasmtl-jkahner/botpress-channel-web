@@ -26347,7 +26347,7 @@ var QuickReplies = function QuickReplies(props) {
 
   return _react2.default.createElement(
     'div',
-    { className: '${style.quickReplyContainer} botpress_messages-container-quickreplies' },
+    { className: _style2.default.quickReplyContainer + ' botpress_messages-container-quickreplies' },
     quick_replies
   );
 };

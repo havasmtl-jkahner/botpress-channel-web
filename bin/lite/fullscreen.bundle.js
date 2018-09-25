@@ -18419,7 +18419,7 @@ var Web = (_temp = _class = function (_React$Component) {
 
       // there's no focus on the actual conversation
       if (document.hasFocus && !document.hasFocus() || this.state.view !== 'side') {
-        this.playSound();
+        // this.playSound()
 
         if (addToUnread) {
           this.increaseUnreadCount();

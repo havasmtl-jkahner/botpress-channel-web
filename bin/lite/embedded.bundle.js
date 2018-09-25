@@ -18552,27 +18552,25 @@ var Web = (_temp = _class = function (_React$Component) {
         this.setState({ currentConversation: newConvo });
       }
     }
-  }, {
-    key: 'playSound',
-    value: function playSound() {
-      var _this6 = this;
 
-      if (!this.state.played && this.state.view !== 'convo') {
-        // TODO: Remove this condition (view !== 'convo') and fix transition sounds
-        var audio = new Audio('/api/botpress-platform-webchat/static/notification.mp3');
-        audio.play();
+    // playSound() {
+    //   if (!this.state.played && this.state.view !== 'convo') {
+    //     // TODO: Remove this condition (view !== 'convo') and fix transition sounds
+    //     const audio = new Audio('/api/botpress-platform-webchat/static/notification.mp3')
+    //     audio.play()
 
-        this.setState({
-          played: true
-        });
+    //     this.setState({
+    //       played: true
+    //     })
 
-        setTimeout(function () {
-          _this6.setState({
-            played: false
-          });
-        }, MIN_TIME_BETWEEN_SOUNDS);
-      }
-    }
+    //     setTimeout(() => {
+    //       this.setState({
+    //         played: false
+    //       })
+    //     }, MIN_TIME_BETWEEN_SOUNDS)
+    //   }
+    // }
+
   }, {
     key: 'increaseUnreadCount',
     value: function increaseUnreadCount() {
@@ -18734,7 +18732,7 @@ var Web = (_temp = _class = function (_React$Component) {
 
   return Web;
 }(_react2.default.Component), _initialiseProps = function _initialiseProps() {
-  var _this7 = this;
+  var _this6 = this;
 
   this.handleIframeApi = function (_ref) {
     var _ref$data = _ref.data,
@@ -18742,37 +18740,37 @@ var Web = (_temp = _class = function (_React$Component) {
         payload = _ref$data.payload;
 
     if (action === 'configure') {
-      _this7.setState({ config: Object.assign({}, defaultOptions, payload) });
+      _this6.setState({ config: Object.assign({}, defaultOptions, payload) });
     } else if (action === 'event') {
       var type = payload.type,
           text = payload.text;
 
       if (type === 'show') {
-        _this7.handleSwitchView('side');
+        _this6.handleSwitchView('side');
       } else if (type === 'hide') {
-        _this7.handleSwitchView('widget');
+        _this6.handleSwitchView('widget');
       } else if (type === 'message') {
-        _this7.setState({ textToSend: text });
-        _this7.handleSendMessage();
+        _this6.setState({ textToSend: text });
+        _this6.handleSendMessage();
       } else {
         var userId = window.__BP_VISITOR_ID;
         var url = BOT_HOSTNAME + '/api/botpress-platform-webchat/events/' + userId;
-        return _this7.props.bp.axios.post(url, { type: type, payload: payload });
+        return _this6.props.bp.axios.post(url, { type: type, payload: payload });
       }
     }
   };
 
   this.handleButtonClicked = function () {
-    if (_this7.state.view === 'convo') {
-      _this7.handleSwitchView('widget');
+    if (_this6.state.view === 'convo') {
+      _this6.handleSwitchView('widget');
     } else {
-      _this7.handleSwitchView('side');
+      _this6.handleSwitchView('side');
     }
   };
 
   this.fetchData = function () {
-    return _this7.fetchConversations().then(_this7.fetchCurrentConversation).then(function () {
-      _this7.handleSendData({
+    return _this6.fetchConversations().then(_this6.fetchCurrentConversation).then(function () {
+      _this6.handleSendData({
         type: 'visit',
         text: 'User visit'
       });
@@ -18780,34 +18778,34 @@ var Web = (_temp = _class = function (_React$Component) {
   };
 
   this.fetchConversations = function () {
-    var axios = _this7.props.bp.axios;
-    var userId = _this7.userId;
+    var axios = _this6.props.bp.axios;
+    var userId = _this6.userId;
     var url = BOT_HOSTNAME + '/api/botpress-platform-webchat/conversations/' + userId;
 
     return axios.get(url).then(function (_ref2) {
       var data = _ref2.data;
       return new Promise(function (resolve) {
-        return !_this7.isUnmounted && _this7.setState(data, resolve);
+        return !_this6.isUnmounted && _this6.setState(data, resolve);
       });
     });
   };
 
   this.fetchCurrentConversation = function (convoId) {
-    var axios = _this7.props.bp.axios;
-    var userId = _this7.userId;
-    var _state = _this7.state,
+    var axios = _this6.props.bp.axios;
+    var userId = _this6.userId;
+    var _state = _this6.state,
         conversations = _state.conversations,
         currentConversationId = _state.currentConversationId;
 
 
     var conversationIdToFetch = convoId || currentConversationId;
     if (conversations.length > 0 && !conversationIdToFetch) {
-      var lifeTimeMargin = (0, _moment2.default)().subtract((0, _ms2.default)(_this7.state.recentConversationLifetime), 'ms');
-      if ((0, _moment2.default)(conversations[0].last_heard_on).isBefore(lifeTimeMargin) && _this7.state.startNewConvoOnTimeout) {
+      var lifeTimeMargin = (0, _moment2.default)().subtract((0, _ms2.default)(_this6.state.recentConversationLifetime), 'ms');
+      if ((0, _moment2.default)(conversations[0].last_heard_on).isBefore(lifeTimeMargin) && _this6.state.startNewConvoOnTimeout) {
         return;
       }
       conversationIdToFetch = conversations[0].id;
-      _this7.setState({ currentConversationId: conversationIdToFetch });
+      _this6.setState({ currentConversationId: conversationIdToFetch });
     }
 
     var url = BOT_HOSTNAME + '/api/botpress-platform-webchat/conversations/' + userId + '/' + conversationIdToFetch;
@@ -18816,12 +18814,12 @@ var Web = (_temp = _class = function (_React$Component) {
       var data = _ref3.data;
 
       // Possible race condition if the current conversation changed while fetching
-      if (_this7.state.currentConversationId !== conversationIdToFetch) {
+      if (_this6.state.currentConversationId !== conversationIdToFetch) {
         // In which case we simply restart fetching
-        return _this7.fetchCurrentConversation();
+        return _this6.fetchCurrentConversation();
       }
 
-      _this7.setState({ currentConversation: data });
+      _this6.setState({ currentConversation: data });
     });
   };
 
@@ -18830,7 +18828,7 @@ var Web = (_temp = _class = function (_React$Component) {
       // don't do anything, it's the system message
       return;
     }
-    _this7.safeUpdateCurrentConvo(event.conversationId, true, function (convo) {
+    _this6.safeUpdateCurrentConvo(event.conversationId, true, function (convo) {
       return Object.assign({}, convo, {
         messages: [].concat(_toConsumableArray(convo.messages), [event]),
         typingUntil: event.userId ? convo.typingUntil : null
@@ -18839,55 +18837,55 @@ var Web = (_temp = _class = function (_React$Component) {
   };
 
   this.handleBotTyping = function (event) {
-    _this7.safeUpdateCurrentConvo(event.conversationId, false, function (convo) {
+    _this6.safeUpdateCurrentConvo(event.conversationId, false, function (convo) {
       return Object.assign({}, convo, {
         typingUntil: (0, _add_milliseconds2.default)(new Date(), event.timeInMs)
       });
     });
 
-    setTimeout(_this7.expireTyping, event.timeInMs + 50);
+    setTimeout(_this6.expireTyping, event.timeInMs + 50);
   };
 
   this.expireTyping = function () {
-    var currentTypingUntil = _this7.state.currentConversation && _this7.state.currentConversation.typingUntil;
+    var currentTypingUntil = _this6.state.currentConversation && _this6.state.currentConversation.typingUntil;
 
     var timerExpired = currentTypingUntil && (0, _is_before2.default)(new Date(currentTypingUntil), new Date());
     if (timerExpired) {
-      _this7.safeUpdateCurrentConvo(_this7.state.currentConversationId, false, function (convo) {
+      _this6.safeUpdateCurrentConvo(_this6.state.currentConversationId, false, function (convo) {
         return Object.assign({}, convo, { typingUntil: null });
       });
     }
   };
 
   this.handleResetUnreadCount = function () {
-    if (document.hasFocus && document.hasFocus() && _this7.state.view === 'side') {
-      _this7.setState({
+    if (document.hasFocus && document.hasFocus() && _this6.state.view === 'side') {
+      _this6.setState({
         unreadCount: 0
       });
     }
   };
 
   this.handleSendMessage = function () {
-    return _this7.handleSendData({ type: 'text', text: _this7.state.textToSend }).then(function () {
-      _this7.handleSwitchView('side');
-      _this7.setState({ textToSend: '' });
+    return _this6.handleSendData({ type: 'text', text: _this6.state.textToSend }).then(function () {
+      _this6.handleSwitchView('side');
+      _this6.setState({ textToSend: '' });
     });
   };
 
   this.handleTextChanged = function (event) {
-    _this7.setState({
+    _this6.setState({
       textToSend: event.target.value
     });
   };
 
   this.handleAddEmoji = function (emoji) {
-    _this7.setState({
-      textToSend: _this7.state.textToSend + emoji.native + ' '
+    _this6.setState({
+      textToSend: _this6.state.textToSend + emoji.native + ' '
     });
   };
 
   this.handleSendQuickReply = function (title, payload) {
-    return _this7.handleSendData({
+    return _this6.handleSendData({
       type: 'quick_reply',
       text: title,
       data: { payload: payload }
@@ -18895,7 +18893,7 @@ var Web = (_temp = _class = function (_React$Component) {
   };
 
   this.handleSendForm = function (fields, formId, repr) {
-    return _this7.handleSendData({
+    return _this6.handleSendData({
       type: 'form',
       formId: formId,
       text: repr,
@@ -18904,7 +18902,7 @@ var Web = (_temp = _class = function (_React$Component) {
   };
 
   this.handleLoginPrompt = function (username, password) {
-    return _this7.handleSendData({
+    return _this6.handleSendData({
       type: 'login_prompt',
       text: 'Provided login information',
       data: { username: username, password: password }
@@ -18914,47 +18912,47 @@ var Web = (_temp = _class = function (_React$Component) {
   this.handleFileUploadSend = function (title, payload, file) {
     var userId = window.__BP_VISITOR_ID;
     var url = BOT_HOSTNAME + '/api/botpress-platform-webchat/messages/' + userId + '/files';
-    var config = { params: { conversationId: _this7.state.currentConversationId } };
+    var config = { params: { conversationId: _this6.state.currentConversationId } };
 
     var data = new FormData();
     data.append('file', file);
 
-    return _this7.props.bp.axios.post(url, data, config).then();
+    return _this6.props.bp.axios.post(url, data, config).then();
   };
 
   this.handleSendData = function (data) {
     var userId = window.__BP_VISITOR_ID;
     var url = BOT_HOSTNAME + '/api/botpress-platform-webchat/messages/' + userId;
-    var config = { params: { conversationId: _this7.state.currentConversationId } };
+    var config = { params: { conversationId: _this6.state.currentConversationId } };
 
-    return _this7.props.bp.axios.post(url, data, config).then();
+    return _this6.props.bp.axios.post(url, data, config).then();
   };
 
   this.handleSwitchConvo = function (convoId) {
-    _this7.setState({
+    _this6.setState({
       currentConversation: null,
       currentConversationId: convoId
     });
 
-    _this7.fetchCurrentConversation(convoId);
+    _this6.fetchCurrentConversation(convoId);
   };
 
   this.handleClosePanel = function () {
-    _this7.handleSwitchView('widget');
+    _this6.handleSwitchView('widget');
   };
 
   this.handleSessionReset = function () {
     var userId = window.__BP_VISITOR_ID;
-    var url = BOT_HOSTNAME + '/api/botpress-platform-webchat/conversations/' + userId + '/' + _this7.state.currentConversationId + '/reset';
-    return _this7.props.bp.axios.post(url).then();
+    var url = BOT_HOSTNAME + '/api/botpress-platform-webchat/conversations/' + userId + '/' + _this6.state.currentConversationId + '/reset';
+    return _this6.props.bp.axios.post(url).then();
   };
 
   this.createConversation = function () {
-    _this7.setState({ currentConversation: null });
+    _this6.setState({ currentConversation: null });
     var userId = window.__BP_VISITOR_ID;
     var url = BOT_HOSTNAME + '/api/botpress-platform-webchat/conversations/' + userId + '/new';
 
-    return _this7.props.bp.axios.post(url).then(_this7.fetchConversations);
+    return _this6.props.bp.axios.post(url).then(_this6.fetchConversations);
   };
 
   this.downloadConversation = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
@@ -18964,23 +18962,23 @@ var Web = (_temp = _class = function (_React$Component) {
         switch (_context.prev = _context.next) {
           case 0:
             userId = window.__BP_VISITOR_ID;
-            url = BOT_HOSTNAME + '/api/botpress-platform-webchat/conversations/' + userId + '/' + _this7.state.currentConversationId + '/download/txt';
+            url = BOT_HOSTNAME + '/api/botpress-platform-webchat/conversations/' + userId + '/' + _this6.state.currentConversationId + '/download/txt';
             _context.next = 4;
-            return _this7.props.bp.axios.get(url);
+            return _this6.props.bp.axios.get(url);
 
           case 4:
             file = _context.sent.data;
             blobFile = new Blob([file.txt]);
 
 
-            _this7.downaloadFile(file.name, blobFile);
+            _this6.downaloadFile(file.name, blobFile);
 
           case 7:
           case 'end':
             return _context.stop();
         }
       }
-    }, _callee, _this7);
+    }, _callee, _this6);
   }));
 }, _temp);
 exports.default = Web;

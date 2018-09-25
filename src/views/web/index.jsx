@@ -345,23 +345,23 @@ export default class Web extends React.Component {
     }
   }
 
-  playSound() {
-    if (!this.state.played && this.state.view !== 'convo') {
-      // TODO: Remove this condition (view !== 'convo') and fix transition sounds
-      const audio = new Audio('/api/botpress-platform-webchat/static/notification.mp3')
-      audio.play()
+  // playSound() {
+  //   if (!this.state.played && this.state.view !== 'convo') {
+  //     // TODO: Remove this condition (view !== 'convo') and fix transition sounds
+  //     const audio = new Audio('/api/botpress-platform-webchat/static/notification.mp3')
+  //     audio.play()
 
-      this.setState({
-        played: true
-      })
+  //     this.setState({
+  //       played: true
+  //     })
 
-      setTimeout(() => {
-        this.setState({
-          played: false
-        })
-      }, MIN_TIME_BETWEEN_SOUNDS)
-    }
-  }
+  //     setTimeout(() => {
+  //       this.setState({
+  //         played: false
+  //       })
+  //     }, MIN_TIME_BETWEEN_SOUNDS)
+  //   }
+  // }
 
   increaseUnreadCount() {
     this.setState({

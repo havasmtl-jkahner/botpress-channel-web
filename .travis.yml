@@ -1,5 +1,4 @@
 language: javascript
-
 branches:
-	only:
-		-build-dev
+  only:
+    - build-dev

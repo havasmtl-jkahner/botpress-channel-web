@@ -1,1 +1,5 @@
 language: javascript
+
+branches:
+	only:
+		-build-dev

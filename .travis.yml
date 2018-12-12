@@ -2,3 +2,7 @@ language: node_js
 branches:
   only:
     - build-dev
+node_js: '11.1'
+cache:
+  - yarn
+  - npm

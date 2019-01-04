@@ -13,4 +13,7 @@ deploy:
   on:
     branch: build-dev
 after_deploy:
-  - git add bin/ && git commit -m 'after travis build' && git push origin build-dev
+  - git add bin/
+  - git commit -m "Travis build: $TRAVIS_BUILD_NUMBER"
+  - git remote add origin-pages https://${GH_TOKEN}@github.com/havasmtl-jkahner/botpress-channel-web.git > /dev/null 2>&1
+  - git push --quiet --set-upstream origin-pages build-dev

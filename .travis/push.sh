@@ -6,14 +6,14 @@ setup_git() {
 }
 
 commit_website_files() {
-  # git checkout -b build-dev
+  git checkout -b chose
   git add .
   git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
 }
 
 upload_files() {
-  git remote add origin-pages https://${GH_TOKEN}@github.com/havasmtl-jkahner/botpress-channel-web.git
-  git push --quiet --set-upstream origin-pages build-dev 
+  git remote add origin https://${GH_TOKEN}@github.com/havasmtl-jkahner/botpress-channel-web.git > /dev/null 2>&1
+  git push --quiet --set-upstream origin build-dev 
 }
 
 setup_git

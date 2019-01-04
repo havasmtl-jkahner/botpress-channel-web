@@ -3,9 +3,6 @@ branches:
   only:
     - build-dev
 node_js: '11.1'
-cache:
-  - yarn
-  - npm
 deploy:
   provider: script
   script: yarn compile

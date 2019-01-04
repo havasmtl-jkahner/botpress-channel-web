@@ -6,3 +6,8 @@ node_js: '11.1'
 cache:
   - yarn
   - npm
+deploy:
+  provider: script
+  script: yarn test
+  on:
+    branch: build-dev

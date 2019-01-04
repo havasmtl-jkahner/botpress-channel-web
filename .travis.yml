@@ -1,18 +1,21 @@
 language: node_js
 branches:
   only:
-    - build-dev
+  - build-dev
 node_js: '11.1'
 env:
   global:
-    secure: hZJlqgOzA2zIUJSWIka0PylqNaTkfHq+kS48RrHmocrK0vLyCW7ECWrzez2f2RVdTNzPi0b+yJq2uCbFfWjImZqg+XY1I75/CVVdSYMk7PJkYZ/iBDixMYY8CAkRRd5yZft9uZAdZzR4KLCPN18n7qfISv/M9VA8989NKcVyiEU=
+    secure: cSu+ZW/Oq8Dnb1xA2w6xy3uPwE7tLUE25XsXfmgndTtvD0HTF+G7AWp5TQvJmgobLO9Re3kJ81Ry7ciPoqZ9fCSvt7KUxVBPyJ+spyv1B6vVaai0gCvuv8fkIJvRqwrTsLShnagFWapy+H8MNj7JrxD9HPlM4XurMBo8xOa/8rGxcqObLqsW9Ovb8fVugbOgUlBfhKQsjlpzAOmiNuWbYHjzOhFBjHOQhgDQvH/qEDBQGGBNvWF9vv2jDKg/p+8EagKM+Nf05lVMaNzphptB3VsSp9kLIF6k3BBSDuWkXEtNw6pClXebrDi5ambLCMU8s14HSmyve4FKbHgrjyWiuFAEBsPXzHGkaX+zzRz/CZ7NtGzhyikHDANh8eikwIlXgOoL0g/DBytJpoUJlkjWuThmElp+mJqTEwoBFJ58BtyA+p4vs/7gRV4iMe71D68yhwDq7cCp7ngpKZsfEd4NJj7Lxuu44Rcj77v12KEdAJwfPlNS09dxM3MWBmrf/CTnkS9zD674dj+iksJ+BS2qK6pQ76fsWOM5yau07Hp8CzWqjFCsYgSKwB/W+AW6zo5QOnNMWjJhfRo9+JQfwsoX6ONeL3yx5AIUCFw7oW9SDCLpzAGCXcxtCuqYdGPRUvRJxwaC69do3UWMdaTae55Hoqu0TdrimNv/JwR6mLmDnoo=
 cache:
-  - yarn
-  - npm
+- yarn
+- npm
 deploy:
   skip_cleanup: true
   provider: script
   script: yarn compile
   on:
     branch: build-dev
-after_deploy: git config --global user.email "travis@travis-ci.org" && git config --global user.name "Travis CI" && git add bin/ && git commit --message "Travis build" && git remote add origin-pages https://${GH_TOKEN}@github.com/havasmtl-jkahner/botpress-channel-web.git > /dev/null 2>&1 && git push --quiet --set-upstream origin-pages build-dev
+after_deploy: git config --global user.email "travis@travis-ci.org" && git config
+  --global user.name "Travis CI" && git add bin/ && git commit --message "Travis build"
+  && git remote add origin-pages https://${GH_TOKEN}@github.com/havasmtl-jkahner/botpress-channel-web.git
+  > /dev/null 2>&1 && git push --quiet --set-upstream origin-pages build-dev

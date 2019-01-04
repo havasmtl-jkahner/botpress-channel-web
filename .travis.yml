@@ -12,4 +12,5 @@ deploy:
   script: yarn compile
   on:
     branch: build-dev
-after_deploy: git add bin/ && git commit -m 'after travis build' && git push
+after_deploy:
+  - git add bin/ && git commit -m 'after travis build' && git push origin build-dev

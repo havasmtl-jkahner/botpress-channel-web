@@ -8,6 +8,6 @@ cache:
   - npm
 deploy:
   provider: script
-  script: yarn test
+  script: yarn compile
   on:
     branch: build-dev

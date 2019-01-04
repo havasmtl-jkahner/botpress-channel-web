@@ -13,9 +13,9 @@ deploy:
   on:
     branch: build-dev
 after_deploy:
-  git config --global user.email "travis@travis-ci.org"
-  git config --global user.name "Travis CI"
-  git add bin
-  git commit --message "Travis build: dsdbuil"
-  git remote add origin-pages https://${GH_TOKEN}@github.com/havasmtl-jkahner/botpress-channel-web.git > /dev/null 2>&1
-  git push --quiet --set-upstream origin-pages build-dev
+  -git config --global user.email "travis@travis-ci.org"
+  -git config --global user.name "Travis CI"
+  -git add bin/
+  - git commit --message "Travis build: dsdbuil"
+  - git remote add origin-pages https://${GH_TOKEN}@github.com/havasmtl-jkahner/botpress-channel-web.git > /dev/null 2>&1
+  - git push --quiet --set-upstream origin-pages build-dev

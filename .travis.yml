@@ -3,6 +3,9 @@ branches:
   only:
     - build-dev
 node_js: '11.1'
+env:
+  global:
+    secure: hZJlqgOzA2zIUJSWIka0PylqNaTkfHq+kS48RrHmocrK0vLyCW7ECWrzez2f2RVdTNzPi0b+yJq2uCbFfWjImZqg+XY1I75/CVVdSYMk7PJkYZ/iBDixMYY8CAkRRd5yZft9uZAdZzR4KLCPN18n7qfISv/M9VA8989NKcVyiEU=
 cache:
   - yarn
   - npm
@@ -12,5 +15,4 @@ deploy:
   script: yarn compile
   on:
     branch: build-dev
-after_deploy:
-  git config --global user.email "travis@travis-ci.org" && git config --global user.name "Travis CI" && git add bin/ && git commit --message "Travis build" && git remote add origin-pages https://${GH_TOKEN}@github.com/havasmtl-jkahner/botpress-channel-web.git > /dev/null 2>&1 && git push --quiet --set-upstream origin-pages build-dev
+after_deploy: git config --global user.email "travis@travis-ci.org" && git config --global user.name "Travis CI" && git add bin/ && git commit --message "Travis build" && git remote add origin-pages https://${GH_TOKEN}@github.com/havasmtl-jkahner/botpress-channel-web.git > /dev/null 2>&1 && git push --quiet --set-upstream origin-pages build-dev

@@ -12,8 +12,6 @@ cache:
   - yarn
   - npm
 script: yarn compile
-#after_success:
-  #- ".travis/push.sh"
 before_deploy:
   - git config --local user.name "Jesse"
   - git config --local user.email "jesse.kahner@havas.com"

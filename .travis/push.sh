@@ -7,6 +7,7 @@ setup_git() {
 
 commit_website_files() {
  #git remote
+ git checkout -b chose
  git config user.email "jesse.kahner@havas.com"
  git config user.name "havasmtl-jkahner"
   git add .

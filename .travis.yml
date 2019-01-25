@@ -11,8 +11,8 @@ cache:
 - yarn
 - npm
 script: yarn compile
-#after_success:
-#- ".travis/push.sh"
+after_success:
+- ".travis/push.sh"
 deploy:
   provider: releases
   api_key:

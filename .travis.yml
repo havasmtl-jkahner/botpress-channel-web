@@ -12,7 +12,7 @@ cache:
 - npm
 script: yarn compile
 after_success:
-- ".travis/push.sh"
+#- ".travis/push.sh"
 deploy:
   provider: releases
   file_glob: true

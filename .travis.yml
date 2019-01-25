@@ -20,5 +20,5 @@ deploy:
   provider: releases
   overwrite: true
   file_glob: true
-  file: **/*
+  file: *
   skip_cleanup: true

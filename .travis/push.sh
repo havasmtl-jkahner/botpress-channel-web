@@ -12,8 +12,9 @@ commit_website_files() {
 }
 
 upload_files() {
-  git remote add origin https://${GH_TOKEN}@github.com/havasmtl-jkahner/botpress-channel-web.git > /dev/null 2>&1
-  git push --quiet --set-upstream origin build-dev 
+  #git remote add origin https://${GH_TOKEN}@github.com/havasmtl-jkahner/botpress-channel-web.git > /dev/null 2>&1
+  #git push --quiet --set-upstream origin build-dev
+  git push "https://${GH_TOKEN}@github.com/havasmtl-jkahner/botpress-channel-web.git" master > /dev/null 2>&1
 }
 
 setup_git

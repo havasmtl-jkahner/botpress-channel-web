@@ -23,7 +23,7 @@ git remote remove origin
   #git push --set-upstream origin master
   #git push --quiet --set-upstream origin master
   #git push "https://${GH_TOKEN}@github.com/havasmtl-jkahner/botpress-channel-web.git" master > /dev/null 2>&1
-  git push origin-push build-dev
+  git push origin build-dev
 }
 
 #setup_git

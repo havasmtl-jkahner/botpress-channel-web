@@ -11,17 +11,3 @@ cache:
   - yarn
   - npm
 script: yarn compile
-before_deploy:
-  - git config --local user.name "Jesse"
-  - git config --local user.email "jesse.kahner@havas.com"
-  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
-  - git tag $TRAVIS_TAG
-deploy:
-  provider: releases
-  api_key:
-    secure: KyOgB7lyhfcBQoUb4K9AZz+gB/bkvJQ3bVx1KXkWYYuSXDC3b3v5RKBJaE+dUW89GZJO3Gqkl7W43EbgRxMDhow6s5IFMYl23DkScCpOyn+LPPQnHfCDiC/frwjIOv7Y83xJN7nk+OP82+Zvongf5XWGuCt/RIXSSsqqexyrT8BJbl7xdAOnrEn6o86BhgeMhG8GZBVd50GDV14XcSewNQ7CaRAtYsFPwIDkES7qhfQjokW8XeqaKcUtFl+1c47DBKXwdM2rOPqS9TDpEO2ifxpxsdmPJP5hkaVdTfKoTrhg8UjmwwlZGZe6vN1o7a9KF+PUucOdPc//WHPX4YVMvD6w6sfnIuBAhmEGafxYfhzMVYssGIutDhACcGIGk2wKzp3r/gqU5Vwlh5RJ/gqK2Foqu2s2a3nC78F2vh4buUu5X36OdhBR7D5fccM6GCSbtY+cyoDYBYSGr8w0lGRmhRrxqNLiSSdTVJjg4o655o27qoPOKigM/qH7Mt384O+yP3dDYxULeNV38nVCWe/Eycs2j6lN7rGcI7dTjecg+0YLbI0aWrc2Ren3pwnrkZx6Kq5is68/NqfmTf64av9lkPa9foiu1MF8TNimlxhKagx2BbVUehq5XcLwfzTfhmrAHaUFjgRc2ReFJUXGA341HNSZpaSEShDANviOLbZo0aI=
-  file_glob: true
-  file: **/*
-  skip_cleanup: true
-  on:
-    tags: true

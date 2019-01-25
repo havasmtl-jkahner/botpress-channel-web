@@ -12,10 +12,9 @@ cache:
   - yarn
   - npm
 script: yarn compile
-after_success:
-  - ".travis/push.sh"
+#after_success:
+  #- ".travis/push.sh"
 before_deploy:
-  # Set up git user name and tag this commit
   - git config --local user.name "Jesse"
   - git config --local user.email "jesse.kahner@havas.com"
   - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}

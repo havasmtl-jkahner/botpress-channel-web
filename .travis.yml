@@ -8,17 +8,23 @@ env:
   - secure: ptNKNWWzqUvDEl05Ap4h08V/wJ3h7b0O5ks12ahNyr+vnANW1diQrB3brGRMi8jNnIaa97K+/7w9soHmF3BMGPVrypIj5txlUNJBKcRr2JVrrkNlBnI3uLQi0yF4dHIB8ayLNdgCOgceI6ByeJbv2nPeBAPCdzklzy09dHplwyeUDRLqoZJRXAFb/qVc3hzFK3G9+zQ+nQNp5iXaGVnO3S9+gk3Imu4xMZs1VgwI0gMEbvhfiJeIUkhqvnnIvyHbmutwjzGl2qrjgC5O77Ng9UlZp81+IY5Vt38AwMBFU7s4EeqsJQLBCOKKheeN47BLLGhNYugtYtTv6zOZ+cRIh0w1MoNEg1n18dqzckJ/+rHaklygSIjU07C+iQZeX5RU10VOHaJe88dv/vUk0OuxafQoHQS2B0eqxksOOoITuhXP8ydgB2hIfKtkoE0IkDA1qxVLeP1ZY7TR0b8VhRR94LAFKMatH95bNxsRfp/0nPh+HErlKJE4vk0U00v1Dtr7bd1iRmhaBrGVi3AAmgXT+mSz2ynPi/iBO3avrefjb0XkQC/qWf/42TdymHgJx1fDgYVhy4Qn2BVy45YWym13Lg1nuak9rIopld1W5McZg7T52TgVY9pUr3ykdvgocV1AxbupIkBDM5x6qwyed4cnQgcoKf+L3zcW7O28hcUS2Ds=
   - secure: KyOgB7lyhfcBQoUb4K9AZz+gB/bkvJQ3bVx1KXkWYYuSXDC3b3v5RKBJaE+dUW89GZJO3Gqkl7W43EbgRxMDhow6s5IFMYl23DkScCpOyn+LPPQnHfCDiC/frwjIOv7Y83xJN7nk+OP82+Zvongf5XWGuCt/RIXSSsqqexyrT8BJbl7xdAOnrEn6o86BhgeMhG8GZBVd50GDV14XcSewNQ7CaRAtYsFPwIDkES7qhfQjokW8XeqaKcUtFl+1c47DBKXwdM2rOPqS9TDpEO2ifxpxsdmPJP5hkaVdTfKoTrhg8UjmwwlZGZe6vN1o7a9KF+PUucOdPc//WHPX4YVMvD6w6sfnIuBAhmEGafxYfhzMVYssGIutDhACcGIGk2wKzp3r/gqU5Vwlh5RJ/gqK2Foqu2s2a3nC78F2vh4buUu5X36OdhBR7D5fccM6GCSbtY+cyoDYBYSGr8w0lGRmhRrxqNLiSSdTVJjg4o655o27qoPOKigM/qH7Mt384O+yP3dDYxULeNV38nVCWe/Eycs2j6lN7rGcI7dTjecg+0YLbI0aWrc2Ren3pwnrkZx6Kq5is68/NqfmTf64av9lkPa9foiu1MF8TNimlxhKagx2BbVUehq5XcLwfzTfhmrAHaUFjgRc2ReFJUXGA341HNSZpaSEShDANviOLbZo0aI=
 cache:
-- yarn
-- npm
+  - yarn
+  - npm
 script: yarn compile
 after_success:
-- ".travis/push.sh"
+  - ".travis/push.sh"
+before_deploy:
+  # Set up git user name and tag this commit
+  - git config --local user.name "Jesse"
+  - git config --local user.email "jesse.kahner@havas.com"
+  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
+  - git tag $TRAVIS_TAG
 deploy:
   provider: releases
   api_key:
     secure: KyOgB7lyhfcBQoUb4K9AZz+gB/bkvJQ3bVx1KXkWYYuSXDC3b3v5RKBJaE+dUW89GZJO3Gqkl7W43EbgRxMDhow6s5IFMYl23DkScCpOyn+LPPQnHfCDiC/frwjIOv7Y83xJN7nk+OP82+Zvongf5XWGuCt/RIXSSsqqexyrT8BJbl7xdAOnrEn6o86BhgeMhG8GZBVd50GDV14XcSewNQ7CaRAtYsFPwIDkES7qhfQjokW8XeqaKcUtFl+1c47DBKXwdM2rOPqS9TDpEO2ifxpxsdmPJP5hkaVdTfKoTrhg8UjmwwlZGZe6vN1o7a9KF+PUucOdPc//WHPX4YVMvD6w6sfnIuBAhmEGafxYfhzMVYssGIutDhACcGIGk2wKzp3r/gqU5Vwlh5RJ/gqK2Foqu2s2a3nC78F2vh4buUu5X36OdhBR7D5fccM6GCSbtY+cyoDYBYSGr8w0lGRmhRrxqNLiSSdTVJjg4o655o27qoPOKigM/qH7Mt384O+yP3dDYxULeNV38nVCWe/Eycs2j6lN7rGcI7dTjecg+0YLbI0aWrc2Ren3pwnrkZx6Kq5is68/NqfmTf64av9lkPa9foiu1MF8TNimlxhKagx2BbVUehq5XcLwfzTfhmrAHaUFjgRc2ReFJUXGA341HNSZpaSEShDANviOLbZo0aI=
   file_glob: true
-  file: *
+  file: *.*
   skip_cleanup: true
   on:
     tags: true

@@ -8,7 +8,7 @@ setup_git() {
 commit_website_files() {
  #git remote
  git checkout -b chose
- git config credential.helper store
+ #git config credential.helper store
  git config --global user.email "jesse.kahner@havas.com"
  git config --global user.name "havasmtl-jkahner"
   git add .
@@ -18,8 +18,8 @@ commit_website_files() {
 upload_files() {
 git remote -v
 git remote remove origin
-git remote add origin-push https://github.com/havasmtl-jkahner/botpress-channel-web.git
-  #git remote add origin "https://${GH_TOKEN}@github.com/havasmtl-jkahner/botpress-channel-web.git"
+# git remote add origin-push https://github.com/havasmtl-jkahner/botpress-channel-web.git
+  git remote add origin "https://${GH_TOKEN}github.com/havasmtl-jkahner/botpress-channel-web.git"
   #git push --set-upstream origin master
   #git push --quiet --set-upstream origin master
   #git push "https://${GH_TOKEN}@github.com/havasmtl-jkahner/botpress-channel-web.git" master > /dev/null 2>&1

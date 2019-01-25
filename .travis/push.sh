@@ -8,8 +8,9 @@ setup_git() {
 commit_website_files() {
  #git remote
  git checkout -b chose
- git config user.email "jesse.kahner@havas.com"
- git config user.name "havasmtl-jkahner"
+ git config --global credential.helper cache
+ git config --global user.email "jesse.kahner@havas.com"
+ git config --global user.name "havasmtl-jkahner"
   git add .
   git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
 }

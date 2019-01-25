@@ -8,7 +8,7 @@ setup_git() {
 commit_website_files() {
  #git remote
  git checkout -b chose
- git config --global credential.helper cache
+ git config credential.helper store
  git config --global user.email "jesse.kahner@havas.com"
  git config --global user.name "havasmtl-jkahner"
   git add .

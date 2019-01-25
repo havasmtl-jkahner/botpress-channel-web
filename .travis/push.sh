@@ -6,7 +6,9 @@ setup_git() {
 }
 
 commit_website_files() {
-  git checkout -b chose
+ git remote
+ git config user.email "jesse.kahner@havas.com"
+ git config user.name "havasmtl-jkahner"
   git add .
   git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
 }
@@ -17,6 +19,6 @@ upload_files() {
   git push "https://${GH_TOKEN}@github.com/havasmtl-jkahner/botpress-channel-web.git" master > /dev/null 2>&1
 }
 
-setup_git
+#setup_git
 commit_website_files
 upload_files

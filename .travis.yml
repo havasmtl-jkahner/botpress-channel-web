@@ -13,3 +13,10 @@ cache:
 script: yarn compile
 after_success:
 - ".travis/push.sh"
+deploy:
+  provider: releases
+  file_glob: true
+  file: *
+  skip_cleanup: true
+  on:
+    tags: true

@@ -1,5 +1,4 @@
 language: node_js
-
 branches:
   only:
   - build-dev
@@ -12,8 +11,8 @@ cache:
   - yarn
   - npm
 script: yarn compile
-after_success:
-  - ".travis/push.sh"
+#after_success:
+  #- ".travis/push.sh"
 before_deploy:
   # Set up git user name and tag this commit
   - git config --local user.name "Jesse"

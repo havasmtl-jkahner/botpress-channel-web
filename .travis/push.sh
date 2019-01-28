@@ -7,12 +7,12 @@ setup_git() {
 
 commit_website_files() {
  #git remote
-#  git checkout -b chose
-git checkout master
+ git checkout -b chose
+# git checkout master
  #git config credential.helper store
  #git config --global user.email "jesse.kahner@havas.com"
  #git config --global user.name "havasmtl-jkahner"
-  git add .
+  git add ./
   git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
   git status
 }

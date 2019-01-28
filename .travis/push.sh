@@ -9,8 +9,8 @@ commit_website_files() {
  #git remote
  git checkout -b chose
  #git config credential.helper store
- git config --global user.email "jesse.kahner@havas.com"
- git config --global user.name "havasmtl-jkahner"
+ #git config --global user.email "jesse.kahner@havas.com"
+ #git config --global user.name "havasmtl-jkahner"
   git add .
   git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
 }
@@ -27,6 +27,6 @@ git remote remove origin
   git push origin build-dev
 }
 
-#setup_git
+setup_git
 commit_website_files
 upload_files

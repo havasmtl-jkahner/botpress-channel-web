@@ -19,6 +19,7 @@ upload_files() {
 git remote -v
 git remote remove origin
 git remote add origin-push git@github.com:havasmtl-jkahner/botpress-channel-web.git
+git remote -v
   #git remote add origin "https://${GH_TOKEN}github.com/havasmtl-jkahner/botpress-channel-web.git"
   #git push --set-upstream origin master
   #git push --quiet --set-upstream origin master

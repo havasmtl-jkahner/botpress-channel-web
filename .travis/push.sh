@@ -12,7 +12,7 @@ commit_website_files() {
  #git config credential.helper store
  #git config --global user.email "jesse.kahner@havas.com"
  #git config --global user.name "havasmtl-jkahner"
-  git add *.*
+  git add bin/
   git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
   git status
 }

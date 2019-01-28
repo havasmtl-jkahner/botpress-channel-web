@@ -12,7 +12,7 @@ commit_website_files() {
 # git remote add origin git@github.com:havasmtl-jkahner/botpress-channel-web.git
   git remote add origin-build "https://${GH_TOKEN}@github.com/havasmtl-jkahner/botpress-channel-web.git"
 git remote -v
- git pull
+ git fetch
  git checkout -b master
  git pull
 # git checkout master

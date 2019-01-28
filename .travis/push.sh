@@ -7,6 +7,11 @@ setup_git() {
 
 commit_website_files() {
  #git remote
+  git remote -v
+  git remote remove origin-build
+# git remote add origin git@github.com:havasmtl-jkahner/botpress-channel-web.git
+  git remote add origin-build "https://${GH_TOKEN}@github.com/havasmtl-jkahner/botpress-channel-web.git"
+git remote -v
  git pull
  git checkout -b master
  git pull
@@ -19,11 +24,7 @@ commit_website_files() {
 }
 
 upload_files() {
-  git remote -v
-  git remote remove origin-build
-# git remote add origin git@github.com:havasmtl-jkahner/botpress-channel-web.git
-# git remote -v
-  git remote add origin-build "https://${GH_TOKEN}@github.com/havasmtl-jkahner/botpress-channel-web.git"
+ 
   #git push --set-upstream origin master
   git push --quiet --set-upstream origin-build master
   #git push "https://${GH_TOKEN}@github.com/havasmtl-jkahner/botpress-channel-web.git" master > /dev/null 2>&1

@@ -6,8 +6,9 @@ setup_git() {
 }
 
 commit_website_files() {
-git branch -v
-  git checkout -b gh-pages
+  git checkout master
+  git branch -v
+  git pull origin master
   git add . *.js
   git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
 #   git remote remove origin-build

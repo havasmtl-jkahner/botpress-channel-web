@@ -19,6 +19,8 @@ commit_website_files() {
 }
 
 upload_files() {
+  git config --global user.email "travis@travis-ci.org"
+  git config --global user.name "Travis CI"
 }
 
 setup_git

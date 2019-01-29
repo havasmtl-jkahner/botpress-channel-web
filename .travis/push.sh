@@ -34,6 +34,6 @@ upload_files() {
 #   git push
 }
 
-setup_git
+# setup_git
 commit_website_files
-upload_files
+# upload_files

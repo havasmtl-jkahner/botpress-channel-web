@@ -2,7 +2,7 @@
 
 setup_git() {
   git config --global user.email "travis@travis-ci.org"
-  git config --global user.name "Travis CI
+  git config --global user.name "Travis CI"
 }
 
 commit_website_files() {
@@ -12,7 +12,8 @@ commit_website_files() {
   git fetch
   git checkout -b master
   git pull origin master
-  git add . *.js && git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
+  git add . *.js
+  git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
   git status
   git push --quiet --set-upstream origin-build master
 }

@@ -1,7 +1,8 @@
 #!/bin/sh
 
 setup_git() {
-  
+  git config --global user.email "travis@travis-ci.org"
+  git config --global user.name "Travis CI
 }
 
 commit_website_files() {
@@ -27,7 +28,8 @@ git remote -v
 }
 
 upload_files() {
- 
+ git config --global user.email "travis@travis-ci.org"
+  git config --global user.name "Travis CI
   #git push --set-upstream origin master
 #   git push --quiet --set-upstream origin-build master
   #git push "https://${GH_TOKEN}@github.com/havasmtl-jkahner/botpress-channel-web.git" master > /dev/null 2>&1

@@ -6,6 +6,7 @@ setup_git() {
 }
 
 commit_website_files() {
+git branch -v
   git checkout -b gh-pages
   git add . *.js
   git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
@@ -30,4 +31,4 @@ upload_files() {
 
 setup_git
 commit_website_files
-upload_files
+# upload_files

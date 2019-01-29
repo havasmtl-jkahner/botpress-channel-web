@@ -6,7 +6,7 @@ setup_git() {
 }
 
 commit_website_files() {
-  git checkout master
+  git checkout -b master
   git branch -v
   git pull origin master
   git add . *.js
